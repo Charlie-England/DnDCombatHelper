@@ -1,0 +1,11 @@
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\bin\Release\netcoreapp3.1\InitiativeDnD.exe
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\bin\Release\netcoreapp3.1\InitiativeDnD.deps.json
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\bin\Release\netcoreapp3.1\InitiativeDnD.runtimeconfig.json
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\bin\Release\netcoreapp3.1\InitiativeDnD.runtimeconfig.dev.json
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\bin\Release\netcoreapp3.1\InitiativeDnD.dll
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\bin\Release\netcoreapp3.1\InitiativeDnD.pdb
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\obj\Release\netcoreapp3.1\InitiativeDnD.csprojAssemblyReference.cache
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\obj\Release\netcoreapp3.1\InitiativeDnD.AssemblyInfoInputs.cache
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\obj\Release\netcoreapp3.1\InitiativeDnD.AssemblyInfo.cs
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\obj\Release\netcoreapp3.1\InitiativeDnD.dll
+C:\Users\Charl\source\repos\InitiativeDnD\InitiativeDnD\obj\Release\netcoreapp3.1\InitiativeDnD.pdb
