@@ -12,6 +12,7 @@ namespace InitiativeDnD.SwitchCases
             string userInput;
             string[] userInputArray;
             var currentInit = 0;
+            string errorPrevious = "";
             do
             {
                 var builder = new StringBuilder();
@@ -45,9 +46,12 @@ namespace InitiativeDnD.SwitchCases
                 Console.WriteLine(builder.ToString());
                 Console.WriteLine(npcHPBuilder.ToString());
                 Console.WriteLine("Type 'n' for next in initiative");
+                if (errorPrevious != "")
+                    Console.WriteLine(errorPrevious);
                 userInput = Console.ReadLine().Trim().ToLower();
                 userInputArray = userInput.Split(" ");
                 Console.Clear();
+                errorPrevious = "";
                 if (userInputArray[0] == "n")
                 {
                     if (currentInit >= orderedCharList.Count - 1)
@@ -60,7 +64,18 @@ namespace InitiativeDnD.SwitchCases
                     }
                 }
                 else if (userInputArray[0] == "addhp" || userInputArray[0] == "subhp")
-                    orderedCharList[currentInit].modifyHP(userInputArray[0], Convert.ToInt32(userInputArray[1]), Convert.ToInt32(userInputArray[2]));
+                    try
+                    {
+                        orderedCharList[currentInit].modifyHP(userInputArray[0], Convert.ToInt32(userInputArray[1]), Convert.ToInt32(userInputArray[2]));
+                    }
+                    catch (Exception)
+                    {
+                        errorPrevious = "Exception occured";
+                    }
+                else
+                {
+                    continue;
+                }
             } while (userInput != "q" && userInput != "quit");
         }
 
