@@ -13,20 +13,23 @@ namespace InitiativeDnD
             string[] userSelection;
             do
             {
+                var CharListNames = new List<string>();
+                foreach (var character in CharList)
+                {
+                    CharListNames.Add(character.name);
+                }
                 Console.Clear();
                 userSelection = Input.GetInput(listOption, CharList);
                 switch (userSelection[0].Trim().ToLower())
                 {
                     case "addchar":
-                        var newChar = AddChar.AddNewChar(CharList, userSelection);
-                        if (newChar.name == "na")
+                        var acceptableInputType = new List<string>() { "n", "npc", "p", "player" };
+                        //calls the addchar class that will add a npc or player based on input from user
+                        if (acceptableInputType.Contains(userSelection[1].Trim().ToLower())) //check to make sure user input acceptable string in console
                         {
-                            Console.WriteLine("Returning to main menu");
-                        } else
-                        {
-                            CharList.Add(newChar);
+                            if (!CharListNames.Contains(userSelection[2]))
+                                AddChar.AddNewChar(CharList, userSelection);
                         }
-                        Resources.DoubleLine();
                         break;
                     case "startcom":
                         StartCombat.StartCom(CharList);
