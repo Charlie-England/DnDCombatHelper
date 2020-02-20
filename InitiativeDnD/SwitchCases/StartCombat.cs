@@ -34,7 +34,12 @@ namespace InitiativeDnD.SwitchCases
                         {
                             foreach (KeyValuePair<int, int> kvp in character.DictNPCs)
                             {
-                                npcHPBuilder.Append($"{character.name} {kvp.Key} | hp: {kvp.Value}\n");
+                                var isDead = "";
+                                if (kvp.Value <= 0)
+                                {
+                                    isDead = "->Dead/Unconscious";
+                                }
+                                npcHPBuilder.Append($"{character.name} {kvp.Key} | hp: {kvp.Value}{isDead}\n");
                             }
                         }
                     }

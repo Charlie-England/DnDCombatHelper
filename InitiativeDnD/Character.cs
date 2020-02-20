@@ -103,7 +103,12 @@ namespace InitiativeDnD
             if (usrInput == "addhp")
                 this.DictNPCs[keyNum] += hpChange;
             else if (usrInput == "subhp")
+            {
                 this.DictNPCs[keyNum] -= hpChange;
+                if (this.DictNPCs[keyNum] < 0)
+                    this.DictNPCs[keyNum] = 0;
+            }
+
         }
 
     }
