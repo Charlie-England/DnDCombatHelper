@@ -48,7 +48,7 @@ namespace InitiativeDnD
                         SetInit.SetInitLogic(CharList, userSelection);
                         break;
                     case "addplayers":
-                        CharList = AddCampaignPlayers.AddPlayers(CharList, userSelection);
+                        AddCampaignPlayers.AddPlayers(CharList, userSelection);
                         break;
                     case "remall":
                         CharList = new List<Character>();
@@ -80,7 +80,7 @@ namespace InitiativeDnD
                         CharList[0].SetBaseHP(15);
                         CharList[0].SetInitiative(12);
                         CharList[0].AddMoreNpcs(3);
-                        CharList = AddCampaignPlayers.AddPlayers(CharList, campaign);
+                        AddCampaignPlayers.AddPlayers(CharList, campaign);
                         CharList[1].SetInitiative(21);
                         CharList[2].SetInitiative(13);
                         CharList[3].SetInitiative(8);
