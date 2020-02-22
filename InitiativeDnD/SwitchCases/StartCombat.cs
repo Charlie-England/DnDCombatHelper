@@ -17,6 +17,7 @@ namespace InitiativeDnD.SwitchCases
             {
                 var builder = new StringBuilder();
                 var npcHPBuilder = new StringBuilder();
+                npcHPBuilder.Append("NPC List:\n");
                 builder.Append('=', 30)
                     .AppendLine()
                     .Append("Initiative Order:")
@@ -25,23 +26,22 @@ namespace InitiativeDnD.SwitchCases
                 //foreach loop which appends who is the current character to show on the console
                 foreach (var character in orderedCharList)
                 {
+                    if (character.type == "npc")
+                    {
+                        foreach (KeyValuePair<int, int> kvp in character.DictNPCs)
+                        {
+                            var isDead = "";
+                            if (kvp.Value <= 0)
+                            {
+                                isDead = "->Dead/Unconscious";
+                            }
+                            npcHPBuilder.Append($"{character.name} {kvp.Key} | hp: {kvp.Value}{isDead}\n");
+                        }
+                    }
                     builder.Append($"{character.initiative}:{character.name}");
                     if (character == orderedCharList[currentInit])
                     {
                         builder.Append(" <--- Current");
-                        if (character.type == "npc")
-                        //update string builder to append list of npcs of type and hp
-                        {
-                            foreach (KeyValuePair<int, int> kvp in character.DictNPCs)
-                            {
-                                var isDead = "";
-                                if (kvp.Value <= 0)
-                                {
-                                    isDead = "->Dead/Unconscious";
-                                }
-                                npcHPBuilder.Append($"{character.name} {kvp.Key} | hp: {kvp.Value}{isDead}\n");
-                            }
-                        }
                     }
                     builder.AppendLine();
                 }

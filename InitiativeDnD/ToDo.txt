@@ -1,0 +1,10 @@
+﻿To Implement:
+
+Larger Goal: Add SQL Library of DnD Monsters so that you can add specific monsters
+	-once this is done, allow attacks to be made by all monsters alive
+
+allow use to set key values for monsters?
+CharList should be a dictionary with <String Names, Character> this will allow for easier checking of key value errors / duplicate keys
+
+Completed:
+-once an npc reaches 0 hp, mark it as dead?
