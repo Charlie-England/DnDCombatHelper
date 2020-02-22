@@ -8,16 +8,13 @@ namespace InitiativeDnD
     {
         static void Main(string[] args)
         {
-            var CharList = new List<Character>();
+            //var CharList = new List<Character>();
+            var CharList = new Dictionary<string, Character>();
             var listOption = new List<string> { "startcom", "rollinit", "remallnpc", "setinit", "addchar", "remchar", "remallnpc", "addplayers", "remall", "addmore", "sethp", "clear", "quit", "q", "test" };
             string[] userSelection;
             do
             {
-                var CharListNames = new List<string>();
-                foreach (var character in CharList)
-                {
-                    CharListNames.Add(character.name);
-                }
+                var CharListNames = new List<string>(CharList.Keys);
                 Console.Clear();
                 userSelection = Input.GetInput(listOption, CharList);
                 switch (userSelection[0].Trim().ToLower())
@@ -35,7 +32,7 @@ namespace InitiativeDnD
                         StartCombat.StartCom(CharList);
                         break;
                     case "rollinit":
-                        foreach (var character in CharList)
+                        foreach (var character in CharList.Values)
                         {
                             if (character.type == "npc")
                             {
@@ -45,52 +42,40 @@ namespace InitiativeDnD
                         break;
                     case "setinit":
                         var SetInit = new SetInitiative();
-                        SetInit.SetInitLogic(CharList, userSelection);
+                        SetInit.SetInitLogic(CharList, CharListNames, userSelection);
                         break;
                     case "addplayers":
                         AddCampaignPlayers.AddPlayers(CharList, userSelection);
                         break;
                     case "remall":
-                        CharList = new List<Character>();
+                        CharList = new Dictionary<string, Character>();
                         break;
                     case "clear":
                         Console.Clear();
                         break;
                     case "sethp":
-                        foreach (var character in CharList)
-                        {
-                            if (character.name == userSelection[1].Trim().ToLower())
-                            {
-                                character.SetBaseHP(Convert.ToInt32(userSelection[2]));
-                            }
-                        }
+                        SetHp.SetAllHp(CharList, userSelection[1], userSelection[2]);
                         break;
                     case "addmore":
-                        foreach (var character in CharList)
-                        {
-                            if (character.name == userSelection[1].Trim().ToLower())
-                            {
-                                character.AddMoreNpcs(Convert.ToInt32(userSelection[2]));
-                            }
-                        }
+                        AddMoreNPC.AddMore(CharList, userSelection[1], userSelection[2]);
                         break;
                     case "test":
                         string[] campaign = { "blank", "tald" };
-                        CharList.Add(new Character("npc", "zombie"));
-                        CharList[0].SetBaseHP(15);
-                        CharList[0].SetInitiative(12);
-                        CharList[0].AddMoreNpcs(3);
+                        CharList.Add("zombie", new Character("npc", "zombie"));
+                        CharList["zombie"].SetBaseHP(15);
+                        CharList["zombie"].SetInitiative(12);
+                        CharList["zombie"].AddMoreNpcs(3);
                         AddCampaignPlayers.AddPlayers(CharList, campaign);
-                        CharList[1].SetInitiative(21);
-                        CharList[2].SetInitiative(13);
-                        CharList[3].SetInitiative(8);
-                        CharList[4].SetInitiative(17);
+                        CharList["pliny"].SetInitiative(21);
+                        CharList["amman"].SetInitiative(13);
+                        CharList["doug"].SetInitiative(8);
+                        CharList["alima"].SetInitiative(17);
                         break;
                     //case "remchar":
                     //    RemoveCharacter();
                     //    break;
                     case "remallnpc":
-                        CharList = RemoveNpc.RemoveAllNpc(CharList);
+                        RemoveNpc.RemoveAllNpc(CharList);
                         break;
                     case "q":
                         break;

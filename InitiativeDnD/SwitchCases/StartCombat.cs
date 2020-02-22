@@ -6,7 +6,7 @@ namespace InitiativeDnD.SwitchCases
 {
     public class StartCombat
     {
-        public static void StartCom(List<Character> charList)
+        public static void StartCom(Dictionary<string,Character> charList)
         {
             Console.Clear();
             string userInput;
@@ -71,7 +71,8 @@ namespace InitiativeDnD.SwitchCases
                 else if (userInputArray[0] == "addhp" || userInputArray[0] == "subhp")
                     try
                     {
-                        orderedCharList[currentInit].modifyHP(userInputArray[0], Convert.ToInt32(userInputArray[1]), Convert.ToInt32(userInputArray[2]));
+                        charList[userInputArray[1]].modifyHP(userInputArray[0], Convert.ToInt32(userInputArray[2]), Convert.ToInt32(userInputArray[3]));
+                        //orderedCharList[currentInit].modifyHP(userInputArray[0], Convert.ToInt32(userInputArray[1]), Convert.ToInt32(userInputArray[2]));
                     }
                     catch (Exception)
                     {
@@ -84,29 +85,35 @@ namespace InitiativeDnD.SwitchCases
             } while (userInput != "q" && userInput != "quit");
         }
 
-        private static List<Character> GetInitiative(List<Character> charList)
+        private static List<Character> GetInitiative(Dictionary<string,Character> CharList)
         {
             //implement dictionary here
-            var initiativeOrder = new List<int>();
             var orderedCharList = new List<Character>();
-            foreach (var character in charList)
+            foreach (KeyValuePair<string, Character> kvp in CharList)
             {
-                initiativeOrder.Add(character.initiative);
-            }
-            initiativeOrder.Sort();
-            initiativeOrder.Reverse();
-            foreach (int i in initiativeOrder)
-            {
-                foreach (var character in charList)
+                while (true) 
                 {
-                    if (character.initiative == i)
+                    if (orderedCharList.Count > 0)
                     {
-                        if (!orderedCharList.Contains(character))
-                            orderedCharList.Add(character);
+                        for (int i = 0; i < orderedCharList.Count; i++)
+                        {
+                            if (kvp.Value.initiative < orderedCharList[i].initiative)
+                            {
+                                orderedCharList.Insert(i, kvp.Value);
+                                break;
+                            }
+                        }
+                        if (!orderedCharList.Contains(kvp.Value))
+                            orderedCharList.Add(kvp.Value);
                     }
-
+                    else
+                    {
+                        orderedCharList.Add(kvp.Value);
+                    }
+                    break;
                 }
             }
+            orderedCharList.Reverse();
             return orderedCharList;
         }
     }

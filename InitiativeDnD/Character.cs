@@ -98,11 +98,11 @@ namespace InitiativeDnD
             }
         }
 
-        public void modifyHP(string usrInput, int keyNum, int hpChange)
+        public void modifyHP(string usrInputAddOrSub, int keyNum, int hpChange)
         {
-            if (usrInput == "addhp")
+            if (usrInputAddOrSub == "addhp")
                 this.DictNPCs[keyNum] += hpChange;
-            else if (usrInput == "subhp")
+            else if (usrInputAddOrSub == "subhp")
             {
                 this.DictNPCs[keyNum] -= hpChange;
                 if (this.DictNPCs[keyNum] < 0)

@@ -6,7 +6,7 @@ namespace InitiativeDnD.SwitchCases
 {
     public class AddChar
     {
-        public static void AddNewChar(List<Character> CharList, string[] userSelection)
+        public static void AddNewChar(Dictionary<string,Character> CharList, string[] userSelection)
         {
             //Function: Small class that cleans up input before adding a new Character object to the reference List charList
             //accepts a string array with type and name already checked, checks to see if the user input p or player, if not default is npc
@@ -16,7 +16,8 @@ namespace InitiativeDnD.SwitchCases
                 type = "player";
             else
                 type = "npc";
-            CharList.Add(new Character(type, userSelection[2]));
+            var newCharacter = new Character(type, userSelection[2].Trim().ToLower());
+            CharList.Add(newCharacter.name, newCharacter);
         }
     }
 }

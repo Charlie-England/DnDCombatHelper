@@ -6,11 +6,11 @@ namespace InitiativeDnD
 {
     class Input
     {
-        public static string[] GetInput(List<string> listOption, List<Character> charList)
+        public static string[] GetInput(List<string> listOption, Dictionary<String,Character> CharList)
         {
             do
             {
-                Console.Write(MainMenuString(listOption, charList));
+                Console.Write(MainMenuString(listOption, CharList));
                 string[] userInput = Console.ReadLine().ToLower().Trim().Split(" ");
                 if (listOption.Contains(userInput[0].ToLower()))
                 {
@@ -38,7 +38,7 @@ namespace InitiativeDnD
             } while (true);
         }
 
-        private static string MainMenuString(List<string> listOptions, List<Character> charList)
+        private static string MainMenuString(List<string> listOptions, Dictionary<String, Character> CharList)
         {
             var builder = new StringBuilder();
             int equalSpacing = 30;
@@ -57,14 +57,14 @@ namespace InitiativeDnD
             builder.AppendLine()
                 .AppendLine()
                 .Append("Current Character List:\n");
-            if (charList.Count > 0)
+            if (CharList.Count > 0)
             {
-                foreach (var character in charList)
+                foreach (KeyValuePair<String, Character> kvp in CharList)
                 {
-                    builder.Append($"{character.name} (init)={character.initiative} ");
-                    if (character.type == "npc")
+                    builder.Append($"{kvp.Key} (init)={kvp.Value.initiative} ");
+                    if (kvp.Value.type == "npc")
                     {
-                        builder.Append($"(hp)={character.baseHP}\n");
+                        builder.Append($"(hp)={kvp.Value.baseHP}\n");
                     } else
                     {
                         builder.Append("\n");

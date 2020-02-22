@@ -6,17 +6,18 @@ namespace InitiativeDnD.SwitchCases
 {
     public class RemoveNpc
     {
-        public static List<Character> RemoveAllNpc(List<Character> GivenCharList)
+        public static void RemoveAllNpc(Dictionary<string, Character> GivenCharList)
         {
-            var returnList = new List<Character>();
-            foreach (var character in GivenCharList)
+            var removeList = new List<string>();
+            foreach (KeyValuePair<string, Character> kvp in GivenCharList)
             {
-                if (character.type == "player")
-                {
-                    returnList.Add(character);
-                }
+                if (kvp.Value.type == "npc")
+                    removeList.Add(kvp.Value.name);
             }
-            return (returnList);
+            foreach (var name in removeList)
+            {
+                GivenCharList.Remove(name);
+            }
         }
     }
 }
